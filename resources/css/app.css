@@ -1,0 +1,45 @@
+@import 'tailwindcss';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* ---- Continuous logo marquee (seamless, non-stop) ---- */
+@keyframes cg-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+.cg-marquee { overflow: hidden; }
+.cg-marquee-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: cg-marquee var(--cg-marquee-duration, 40s) linear infinite;
+    will-change: transform;
+}
+.cg-marquee-item {
+    flex: 0 0 auto;
+    margin-right: 2.5rem;      /* equal gap between every logo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Soft fade on both edges */
+.cg-marquee-fade {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+
+/* ---- Product sliders + favourites ---- */
+.cg-slider,
+.cg-chips { scrollbar-width: none; -ms-overflow-style: none; }
+.cg-slider::-webkit-scrollbar,
+.cg-chips::-webkit-scrollbar { display: none; }
+.fav-btn.is-fav { color: #be9b62; }
